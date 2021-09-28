@@ -1,0 +1,8 @@
+<div [formGroup]="group">
+  <button type="submit"
+          mat-raised-button
+          color="{{field.color}}"
+          [disabled]='group.invalid || !group.touched'>
+    {{ field.label }}
+  </button>
+</div>

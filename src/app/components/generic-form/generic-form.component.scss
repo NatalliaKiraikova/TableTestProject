@@ -1,0 +1,26 @@
+.generic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ::ng-deep mat-form-field {
+      min-width: 300px;
+    }
+
+    ::ng-deep .mat-form-field-disabled {
+      display: none;
+    }
+  }
+
+  .buttons-wrapper {
+    padding-top: 20px;
+  }
+
+}
+
+

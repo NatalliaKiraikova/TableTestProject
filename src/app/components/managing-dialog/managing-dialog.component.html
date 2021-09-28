@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{ data.labels.dialogTitle }}</h1>
+<div mat-dialog-content>
+  <app-generic-form
+    [fields]="fields"
+    (formReady)="onFormReady($event)"
+    (changeHandler)="onFormChange($event)">
+  </app-generic-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)='onSubmit()'
+          [disabled]="form ? form.invalid : false">{{data.labels.submitButtonText}}</button>
+  <button mat-raised-button (click)='onClose()'>{{data.labels.cancelButtonText}}</button>
+
+  <button *ngIf="data.labels.deleteButtonText" mat-raised-button color="warn"
+          (click)='onDelete()'>{{data.labels.deleteButtonText}}</button>
+</div>

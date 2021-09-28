@@ -1,0 +1,141 @@
+@use '~@angular/material' as mat;
+@use 'sass:map';
+/*@import '~@swimlane/ngx-datatable/index.css';*/
+/*@import '~@swimlane/ngx-datatable/themes/material.scss';*/
+/*@import '~@swimlane/ngx-datatable/assets/icons.css';*/
+@import "~@angular/material/theming";
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-accent: mat.define-palette(mat.$orange-palette);
+$my-warn: mat.define-palette(mat.$red-palette);
+$my-info: mat.define-palette(mat.$green-palette);
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  )
+));
+
+@include mat.all-component-themes($my-theme);
+
+$min-table-button-size: 130px;
+$min-card-button-size: 80px;
+$buttons-wraper-padding: 0 8px;
+$page-padding: 20px;
+
+$font-size-small: 10px;
+$font-size-smaller: 12px;
+$font-size-normal: 14px;
+$font-size-larger: 16px;
+$font-size-large: 18px;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  .form-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    mat-form-field {
+      min-width: 300px;
+    }
+  }
+
+  .snack-bar-success {
+    background: mat.get-color-from-palette($my-primary, 'default');
+  }
+
+  .snack-bar-error {
+    background: mat.get-color-from-palette($my-warn, 'default');
+  }
+
+  .snack-bar-warn {
+    background: mat.get-color-from-palette($my-accent, 'default');
+  }
+
+  .snack-bar-info {
+    background: mat.get-color-from-palette($my-info, 'lighter');
+  }
+
+  .with-background {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+
+    h2, h3 {
+      text-align: center;
+    }
+
+    mat-form-field {
+      min-width: 300px;
+    }
+
+    .mat-form-field-disabled {
+      display: none;
+    }
+
+    .card-notification {
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .card-buttons {
+      display: flex;
+
+      button {
+        min-width: $min-card-button-size;
+        margin: 10px;
+      }
+    }
+  }
+
+}
+
+.table-progress-wrapper {
+  min-height: 5px;
+  background-color: white;
+}
+
+.table-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $buttons-wraper-padding;
+  background-color: white;
+
+  button {
+    margin: 0 1em;
+    min-width: $min-table-button-size;
+  }
+}
+
+.table-refresh-button {
+  font-size: 36px;
+  height: 30px;
+  width: 36px;
+  padding: 10px;
+  line-height: 0.7;
+  cursor: pointer;
+}
+
+.table-with-scroll {
+  width: 100%;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+

@@ -1,0 +1,22 @@
+<section class="login-page with-background">
+  <mat-card>
+    <mat-progress-bar *ngIf="inUse" mode="indeterminate"></mat-progress-bar>
+    <form class="form-flex" [formGroup]="loginForm">
+      <mat-form-field>
+        <input matInput placeholder="{{labels.usrPlaceholder}}" type="email" formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{labels.pwdPlaceholder}}" type="password" formControlName="password">
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="inUse || loginForm.invalid"
+              (click)="onLogin()">{{labels.loginButtonText}}</button>
+    </form>
+    <div class="login-page__links">
+      <div><a href="/registration" (click)="clear()">{{labels.signupLinkText}}</a></div>
+      <div><a href="/reset-password" (click)="clear()">{{labels.forgotPwdLinkText}}</a></div>
+    </div>
+    <div class="login-page__privacy">
+      <a href="privacy-policy" target="_blank"> {{labels.privacy}}</a>
+    </div>
+  </mat-card>
+</section>

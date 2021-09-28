@@ -1,0 +1,61 @@
+<section class="dashboard-page">
+  <div class="table-progress-wrapper">
+    <mat-progress-bar *ngIf="inUse" mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div class="table-buttons-wrapper">
+    <div>
+      <button mat-raised-button color="primary" (click)="onNewClick()">{{labels.newButtonText}}</button>
+      <!--<button mat-raised-button color="primary" (click)="onShareClick()"
+              [disabled]="isButtonDisabled()">{{labels.shareButtonText}}</button>-->
+      <button mat-raised-button color="warn" (click)="onDeleteClick()"
+              [disabled]="isButtonDisabled()">{{labels.deleteButtonText}}</button>
+    </div>
+    <mat-icon aria-hidden="false" color="primary" aria-label="Refresh approval list"
+              class="table-refresh-button" (click)="onRefresh()">refresh
+    </mat-icon>
+  </div>
+  <mat-table [dataSource]="list" matSort class="table-with-scroll">
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <app-select-all [dependedItems]="list?.filteredData" [disabled]="inUse"></app-select-all>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-checkbox color="primary" [checked]="element.selected" [disabled]="inUse"
+                      (change)="onSelectItem(element, $event)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{labels.columns.code}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{labels.columns.type}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef>{{labels.columns.address}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shared">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{labels.columns.status}}</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.shared ? 'Shared' : ''}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-icon aria-hidden="false" color="primary" aria-label="Edit" (click)='onEditClick(element)'>
+          edit
+        </mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</section>

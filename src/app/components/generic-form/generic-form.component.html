@@ -1,0 +1,19 @@
+<form class="generic-form"
+      [formGroup]="form"
+      (submit)="submit()">
+  <div class="fields-wrapper">
+    <ng-container *ngFor="let field of fields"
+                  appDynamicField
+                  [field]="field"
+                  [group]="form"
+                  (changeHandler)="onChange()">
+    </ng-container>
+  </div>
+  <div class="buttons-wrapper">
+    <ng-container *ngFor="let button of buttons"
+                  appDynamicField
+                  [field]="button"
+                  [group]="form">
+    </ng-container>
+  </div>
+</form>

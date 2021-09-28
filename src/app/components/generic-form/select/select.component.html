@@ -1,0 +1,18 @@
+<mat-form-field [formGroup]="group">
+  <mat-label>{{(field?.options || (field?.options$ | async)) ? field?.label : 'loading...'}}</mat-label>
+  <mat-select [formControlName]="field?.name"
+              [multiple]="field?.multiple"
+              (selectionChange)="onChanged($event)">
+    <mat-option
+      *ngFor="let item of field?.options$ | async"
+      [value]="item.id">
+      {{item.name}}
+    </mat-option>
+    <mat-option
+      *ngFor="let item of field?.options"
+      [value]="item.id">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>
